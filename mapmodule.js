@@ -8,11 +8,13 @@ const module = (function() {
         return newScriptElement;
     };
 
-    function privateFiller(elements, text) {
-        const cityFiels = document.querySelectorAll(elements);
-            cityFiels.forEach(function(index) {
-            index.innerHtml = text;
-        })
+    function privateFiller() {
+        const cityFiels = document.querySelectorAll('.user-city');
+        const city = YMaps.location.city;
+        console.log(cityFiels, city)
+        for (key of cityFiels) {
+            key.innerHTML = city;
+        }
     }
 
     function privateFindAndOnload() {
