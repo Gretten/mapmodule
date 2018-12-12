@@ -12,8 +12,8 @@ const module = (function() {
         const cityFiels = document.querySelectorAll(options.fill);
         const alter = /^\S+\s/;
         let city;
-        
-        if(YMaps) {
+
+        if(options.object || YMaps) {
             if(YMaps.location.city) {
                 city = YMaps.location.city;
             } else {
@@ -22,6 +22,7 @@ const module = (function() {
         } else {
             city = 'Москва'
         }
+
         for (key of cityFiels) {
             key.innerHTML = city;
         }
