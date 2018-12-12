@@ -10,17 +10,20 @@ const module = (function() {
 
     const privateFillCities = options => {
         const cityFiels = document.querySelectorAll(options.fill);
-        let city = options.object || YMaps.location.city;
-        if(city) {
-            for (key of cityFiels) {
-                key.innerHTML = city;
+        const alter = /^\S+\s/;
+        let city;
+        
+        if(YMaps) {
+            if(YMaps.location.city) {
+                city = YMaps.location.city;
+            } else {
+                city = YMaps.location.region.match(alter)[0].trim();
             }
         } else {
-            const alter = /^\S+\s/;
-            city = YMaps.location.region.match(alter)[0].trim();
-            for (key of cityFiels) {
-                key.innerHTML = city;
-            }
+            city = 'Москва'
+        }
+        for (key of cityFiels) {
+            key.innerHTML = city;
         }
     }
 
