@@ -8,13 +8,19 @@ const module = (function() {
         return newScriptElement;
     };
 
-
     const privateFillCities = options => {
         const cityFiels = document.querySelectorAll(options.fill);
-        const city = options.object || YMaps.location.city;
-        console.log(cityFiels, city)
-        for (key of cityFiels) {
-            key.innerHTML = city;
+        let city = options.object || YMaps.location.city;
+        if(city) {
+            for (key of cityFiels) {
+                key.innerHTML = city;
+            }
+        } else {
+            const alter = /^\S+\s/;
+            city = YMaps.location.region.match(alter)[0].trim();
+            for (key of cityFiels) {
+                key.innerHTML = city;
+            }
         }
     }
 
